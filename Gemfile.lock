@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    sunlight-congress (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sunlight-congress
