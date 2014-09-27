@@ -13,11 +13,11 @@ def legislators_by_zipcode(zipcode)
 end
 
 def save_thank_you_letters(id, form_letter)
-  Dir.mkdir('output') unless Dir.exists? 'output'
+  Dir.mkdir('output') unless Dir.exist? 'output'
 
   filename = "output/thanks_#{id}.html"
 
-  File.open(filename,'w') do |file|
+  File.open(filename, 'w') do |file|
     file.puts form_letter
   end
 end
@@ -31,8 +31,8 @@ else
   puts 'File not found'
 end
 
-if File.exist? 'form_letter.html'
-  template_letter = File.read "form_letter.erb"
+if File.exist? 'form_letter.erb'
+  template_letter = File.read 'form_letter.erb'
   erb_template = ERB.new template_letter
 else
   puts 'File not found'
@@ -55,5 +55,3 @@ contents.each do |row|
 end
 
 puts 'Done!'
-
-
