@@ -19,11 +19,20 @@ end
 
 puts 'EventManager Initialized'
 
-if File.exist? '../event_attendees.csv'
-  contents = CSV.open '../event_attendees.csv', headers: true,
-                                                header_converters: :symbol
+if File.exist? 'event_attendees.csv'
+  contents = CSV.open 'event_attendees.csv', headers: true,
+                                             header_converters: :symbol
+else
+  puts 'File not found'
 end
 
+if File.exist? 'form_letter.html'
+  template_letter = File.read "form_letter.html"
+else
+  puts 'File not found'
+end
+
+print 'Working'
 contents.each do |row|
   name = row[:first_name]
 
@@ -31,5 +40,11 @@ contents.each do |row|
 
   legislators = legislators_by_zipcode(zipcode)
 
-  puts "#{name} #{zipcode} #{legislators}"
+  personal_letter = template_letter.gsub('FIRST_NAME',name)
+  personal_letter.gsub!('LEGISLATORS',legislators)
+  print '.'
 end
+
+puts 'Done!'
+
+
